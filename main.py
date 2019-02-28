@@ -5,6 +5,8 @@ from random import randint
 from order import repeatRandomness
 from tqdm import tqdm
 import itertools
+import time
+
 
 def main():
     # read_input('inputs/b_lovely_landscapes.txt')
@@ -24,7 +26,8 @@ def main():
     for _v, _v2 in zip(v_temp[0:: 2], v_temp[1:: 2]):
         index = randint(1, len(slideshow))
 
-        slideshow.insert(index, Slide(v_tags_1=_v.v_tags_1, v_tags_2=_v2.v_tags_1, v_image_1=_v.v_image_1, v_image_2=_v2.v_image_1))
+        slideshow.insert(index, Slide(v_tags_1=_v.v_tags_1, v_tags_2=_v2.v_tags_1,
+                                      v_image_1=_v.v_image_1, v_image_2=_v2.v_image_1))
 
     h = h[100:]
     v = v[100:]
@@ -32,9 +35,11 @@ def main():
     print(len(slideshow))
     print(slideshow)
 
-    for _ in tqdm(range(P *5)):
+    start = time.time()
+    while time.time() - start < 120:
         repeatRandomness(slideshow, h, v)
         print(scoreArray(slideshow))
+
 
 if __name__ == '__main__':
     main()
