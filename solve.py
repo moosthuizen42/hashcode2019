@@ -8,13 +8,64 @@ class Solver:
 
         self.photos, self.h, self.v = self.input()
 
-    def score(self, photo1, photo2):
-        s1 = self.photos[photo1][1]
-        s2 = self.photos[photo2][1]
+    def score(self, slide1, slide2):
+        if not isinstance(slide1, list):
+            s1 = self.photos[slide1][1]
+        else:
+            s1 = self.photos[slide1[0]][1] | self.photos[slide1[1]][1]
+
+        if not isinstance(slide2, list):
+            s2 = self.photos[slide2][1]
+        else:
+            s2 = self.photos[slide2[0]][1] | self.photos[slide2[1]][1]
+
         return min(len(s1 & s2), len(s1 - s2), len(s2 - s1))
 
     def solve(self):
-        print(self.score(0, 3))
+
+        self.slides.append(self.h.pop())
+        H = len(self.h)
+
+        total = 0
+
+        while H > 0:
+
+            for h in range(H):
+                score = self.score(self.slides[-1], self.h[h])
+                total += score
+                if score > 0:
+                    self.slides.append(self.h[h])
+                    del self.h[h]
+                    break
+
+            H = len(self.h)
+            print((H, total))
+
+            # V = len(self.v)
+
+            # while H + V > 0:
+
+            #     if H > 0:
+            #         self.slides.append(self.h.pop())
+
+            #     if V > 0:
+            #         self.slides.append([self.v.pop(), self.v.pop()])
+
+            #     H = len(self.h)
+            #     V = len(self.v)
+
+    def validate(self):
+        pass
+
+    def total_score(self):
+
+        score = 0
+        for i in range(len(self.slides) - 1):
+            slide1 = self.slides[i]
+            slide2 = self.slides[i + 1]
+            score += self.score(slide1, slide2)
+
+        return score
 
     def input(self):
 
@@ -47,14 +98,20 @@ class Solver:
 
     def output(self):
         with open(self.out_file, "w") as f:
-            f.write("%d" % len(self.slides))
+            f.write("%d\n" % len(self.slides))
             for slide in self.slides:
-                if len(slide) > 0:
-                    f.write("%d", slide)
+                if not isinstance(slide, list):
+                    f.write("%d\n" % slide)
                 else:
-                    f.write("%d %d", (slide[0], slide[1]))
+                    f.write("%d %d\n" % (slide[0], slide[1]))
 
 
-solver = Solver("inputs/a_example.txt")
+# solver = Solver("inputs/a_example.txt")
+solver = Solver("inputs/b_lovely_landscapes.txt")
+# solver = Solver("inputs/c_memorable_moments.txt")
+# solver = Solver("inputs/d_pet_pictures.txt")
+# solver = Solver("inputs/e_shiny_selfies.txt")
+
 solver.solve()
+print(solver.total_score())
 solver.output()
