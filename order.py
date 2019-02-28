@@ -2,16 +2,20 @@ import random
 from score import getScore
 from slide import Slide
 
-def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
+def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slides):
     # print("repeatRandomness")
 
+    completion_factor = len(current_slides) / max_slides
+
     option = random.randint(0, 1)
-    force = random.randint(0,100) > 90
 
     if (option == 0):
+        force = random.randint(0,100) > completion_factor*100
         doRandomInsert(current_slides, unused_slides_H, unused_slides_V, force)
 
     elif (option == 1):
+        
+        force = random.randint(0,100) > (100 - completion_factor*50)
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
 
