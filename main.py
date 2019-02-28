@@ -40,7 +40,7 @@ def main():
     idx = 0
     while time.time() - start < 120:
         idx += 1
-        repeatRandomness(slideshow, h, v)
+        repeatRandomness(slideshow, h, v, P)
         if idx % 50000 == 0:
             print('\r', scoreArray(slideshow), ' - ', len(slideshow), end="")
 
