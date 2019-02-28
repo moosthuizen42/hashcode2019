@@ -3,7 +3,7 @@ from score import getScore
 from slide import Slide
 
 def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
-    print("repeatRandomness")
+    # print("repeatRandomness")
 
     option = random.randint(0, 1)
     force = random.randint(0,100) > 90
@@ -24,12 +24,11 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
 def completelyRandomInsert (current_slides):
 
 
-
-def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
-    print("doRandomInsert")
+def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
+    # print("doRandomInsert")
 
     if (len(current_slides) < 2):
-        print("2 or more current slides needed for insert check.")
+        # print("2 or more current slides needed for insert check.")
         return
 
     insert_index = random.randint(0, len(current_slides)-2)
@@ -41,20 +40,17 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
     if (v_case):
 
-        if (len(unused_slides_V) < 2):
-            print("2 or more unused slides needed for V insert.")
+        if (len(unused_slides_V) < 3):
+            # print("2 or more unused slides needed for V insert.")
             return
 
         # V-case
-        random_unused_index_1 = random.randint(0, len(unused_slides_V)-1)
-        print("random_unused_index_1: " + random_unused_index_1)
-        random_unused_index_2 = random.randint(0, len(unused_slides_V)-1)
-        print("random_unused_index_2: " + random_unused_index_2)
+        random_unused_index_1 = random.randint(0, len(unused_slides_V)-2)
+        # print("random_unused_index_1: " + str(random_unused_index_1))
+        random_unused_index_2 = random.randint(0, len(unused_slides_V)-2)
+        # print("random_unused_index_2: " + str(random_unused_index_2))
         while (random_unused_index_1 == random_unused_index_2):
-            random_unused_index_2 = random.randint(0, len(unused_slides_V)-1)
-            print("unused slides length: " + len(unused_slides_V))
-            print("random_unused_index_1: " + random_unused_index_1)
-            print("random_unused_index_2: " + random_unused_index_2)
+            random_unused_index_2 = random.randint(0, len(unused_slides_V)-2)
 
 
         # Build a new slide temporarily
@@ -66,19 +62,14 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
         if ( force or insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
-            if (random_unused_index_1 > random_unused_index_2):
-                del unused_slides_V[random_unused_index_1]
-                del unused_slides_V[random_unused_index_2]
-            else:
-                del unused_slides_V[random_unused_index_2]
-                del unused_slides_V[random_unused_index_1]
-
+            del unused_slides_V[random_unused_index_1]
+            del unused_slides_V[random_unused_index_2]
 
 
     if (h_case):
 
         if (len(unused_slides_H) < 1):
-            print("1 or more unused slides needed for H insert.")
+            # print("1 or more unused slides needed for H insert.")
             return
 
         # H-slides are being used
@@ -92,10 +83,10 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
 
 def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
-    print("doRandomRemove")
+    # print("doRandomRemove")
 
     if (len(current_slides) < 3):
-        print("3 or more slides needed for remove.")
+        # print("3 or more slides needed for remove.")
         return
 
     remove_index = random.randint(1, len(current_slides)-2)
@@ -108,7 +99,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
         else:
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_1,
-                v_tags_1 = removed_slide.v_tags_1
+                v_tags_1 = removed_slide.v_tags_1,
             ))
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_2,
@@ -158,7 +149,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
 
 
 def insertImprovement (current_slides, insert_index, insert_slide):
-    print("insertImprovement")
+    # print("insertImprovement")
 
     old_score = getScore( current_slides[insert_index], current_slides[insert_index + 1] )
     new_score = (getScore( current_slides[insert_index], insert_slide ) +
@@ -169,7 +160,7 @@ def insertImprovement (current_slides, insert_index, insert_slide):
 
 
 def removeImprovement (current_slides, remove_index):
-    print("removeImprovement")
+    # print("removeImprovement")
 
     old_score = (getScore( current_slides[remove_index - 1], current_slides[remove_index] ) +
         getScore( current_slides[remove_index], current_slides[remove_index + 1] ) / 2)
