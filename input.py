@@ -28,12 +28,12 @@ def read_input(filename):
 def write_output(filename, slides):
 
     with open(filename, "w") as f:
-        f.write("%d" % len(slides))
+        f.write("%d\n" % len(slides))
         for slide in slides:
             if slide.h_image == None:
-                f.write("%d %d" % (slide.v_image_1, slide.v_image_2))
+                f.write("%d %d\n" % (slide.v_image_1, slide.v_image_2))
             else:
-                f.write("%d" % (slide.h_image))
+                f.write("%d\n" % (slide.h_image))
 
 
 # P, v, h = read_input("inputs/a_example.txt")

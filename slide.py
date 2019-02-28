@@ -14,6 +14,7 @@ class Slide():
             self.all_tags.extend(v_tags_2)
         if h_tags is not None:
             self.all_tags.extend(h_tags)
+        self.all_tags = list(set(self.all_tags))
 
     def __str__(self):
         if self.h_image:

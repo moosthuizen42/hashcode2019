@@ -9,10 +9,11 @@ import time
 
 
 def main():
-    # P, v, h = read_input('inputs/b_lovely_landscapes.txt')
-    # P, v, h = read_input('inputs/c_memorable_moments.txt')
-    P, v, h = read_input('inputs/d_pet_pictures.txt')
-    # P, v, h = read_input('inputs/e_shiny_selfies.txt')
+    # input_file = 'b_lovely_landscapes.txt'
+    # input_file = 'c_memorable_moments.txt'
+    input_file = 'd_pet_pictures.txt'
+    # input_file = 'e_shiny_selfies.txt'
+    P, v, h = read_input('inputs/' + input_file)
 
     v_count = len(v)
     h_count = len(h)
@@ -36,15 +37,21 @@ def main():
     # h = h[int(h_count/10):]
     # v = v[int(v_count/20):]
 
+    max_score = 0
+    max_score_slideshow = []
     start = time.time()
     idx = 0
-    while time.time() - start < 120:
+    while time.time() - start < 60:
         idx += 1
         repeatRandomness(slideshow, h, v, P)
         if idx % 50000 == 0:
-            print('\r', scoreArray(slideshow), ' - ', len(slideshow), end="")
+            score = scoreArray(slideshow)
+            print('\r', score, '/', max_score, ' - ', len(slideshow), end="")
+            if score > max_score:
+                max_score = score
+                max_score_slideshow = slideshow
 
-    write_output('fuck_grant.txt', slideshow)
+    write_output('outputs/' + input_file, max_score_slideshow)
 
 
 if __name__ == '__main__':
