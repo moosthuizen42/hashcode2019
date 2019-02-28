@@ -10,11 +10,11 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
     option = random.randint(0, 1)
 
     if (option == 0):
-        force = random.randint(0,100) > completion_factor*10 + 90
+        force = random.randint(0,100) > completion_factor*2 + 98
         doRandomInsert(current_slides, unused_slides_H, unused_slides_V, force)
 
     elif (option == 1):
-        force = random.randint(0,100) > (100 - completion_factor*10)
+        force = random.randint(0,100) > (100 - completion_factor*2)
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
 
