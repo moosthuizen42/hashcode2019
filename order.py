@@ -21,9 +21,6 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
     #     doRandomSwap(current_slides, unused_slides_V);
 
 
-def completelyRandomInsert (current_slides):
-
-
 def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
     # print("doRandomInsert")
 
