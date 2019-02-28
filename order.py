@@ -22,7 +22,7 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
 def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
     # print("doRandomInsert")
 
-    if (len(current_slides) < 2):
+    if (not force and len(current_slides) < 2):
         # print("2 or more current slides needed for insert check.")
         return
 
@@ -71,7 +71,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
         random_unused_index = random.randint(0, len(unused_slides_H)-1)
         random_unused_slide = unused_slides_H[random_unused_index]
 
-        if ( insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
+        if ( force or insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
             del unused_slides_H[random_unused_index]
 
