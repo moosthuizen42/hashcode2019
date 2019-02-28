@@ -1,4 +1,5 @@
 import numpy as np
+from slide import Slide
 
 
 def read_input(filename):
@@ -17,9 +18,9 @@ def read_input(filename):
         T = elements[2:]
 
         if O == 'H':
-            h.append({"id": i, "orientation": O, "tags": T})
+            h.append(Slide(h_tags=T, h_image=i))
         else:
-            v.append({"id": i, "orientation": O, "tags": T})
+            v.append(Slide(v_tags_1=T, v_image_1=i))
 
     return P, v, h
 
