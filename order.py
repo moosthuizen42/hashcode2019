@@ -83,7 +83,9 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
     if ( removeImprovement(current_slides, remove_index) > 0 ):
         removed_slide = current_slides[remove_index]
 
-        if (len(removed_slide.ids) == 2):
+        if (removed_slide.h_image is not None):
+            unused_slides_H.append(removed_slide)
+        else:
             unused_slides_V.append(
                 v_image_1 = removed_slide.v_image_1,
                 v_tags_1 = removed_slide.v_tags_1,
@@ -92,9 +94,6 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
                 v_image_1 = removed_slide.v_image_2,
                 v_tags_1 = removed_slide.v_tags_2,
             )
-        else:
-            unused_slides_H.append(removed_slide)
-
 
         del current_slides[remove_index]
 
