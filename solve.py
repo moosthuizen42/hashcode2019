@@ -33,7 +33,7 @@ class Solver:
             for h in range(H):
                 score = self.score(self.slides[-1], self.h[h])
                 total += score
-                if score > 0:
+                if score > 0 or h == H - 1:
                     self.slides.append(self.h[h])
                     del self.h[h]
                     break
@@ -112,6 +112,10 @@ solver = Solver("inputs/b_lovely_landscapes.txt")
 # solver = Solver("inputs/d_pet_pictures.txt")
 # solver = Solver("inputs/e_shiny_selfies.txt")
 
-solver.solve()
-print(solver.total_score())
-solver.output()
+try:
+    solver.solve()
+    print(solver.total_score())
+    solver.output()
+except KeyboardInterrupt:
+    print(solver.total_score())
+    solver.output()
