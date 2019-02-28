@@ -6,19 +6,26 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
     print("repeatRandomness")
 
     option = random.randint(0, 1)
+    force = random.randint(0,100) > 90
 
     if (option == 0):
-        doRandomInsert(current_slides, unused_slides_H, unused_slides_V)
+        doRandomInsert(current_slides, unused_slides_H, unused_slides_V, force)
 
     elif (option == 1):
-        doRandomRemove(current_slides, unused_slides_H, unused_slides_V)
+        doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
+
+    else:
+
 
     # elif (option == 2):
     #     doRandomSwap(current_slides, unused_slides_V);
 
 
+def completelyRandomInsert (current_slides):
 
-def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
+
+
+def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
     print("doRandomInsert")
 
     if (len(current_slides) < 2):
@@ -57,7 +64,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
             v_tags_1 = unused_slides_V[ random_unused_index_2 ].v_tags_1,
             v_tags_2 = unused_slides_V[ random_unused_index_2 ].v_tags_1 )
 
-        if ( insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
+        if ( force or insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
             if (random_unused_index_1 > random_unused_index_2):
                 del unused_slides_V[random_unused_index_1]
@@ -93,7 +100,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
 
     remove_index = random.randint(1, len(current_slides)-2)
 
-    if ( removeImprovement(current_slides, remove_index) > 0 ):
+    if ( force or removeImprovement(current_slides, remove_index) > 0 ):
         removed_slide = current_slides[remove_index]
 
         if (removed_slide.h_image is not None):
