@@ -29,4 +29,6 @@ def removeImprovement (current_slides, remove_index):
 
 
 
-def 
+def verticalSwapImprovement ():
+
+    
