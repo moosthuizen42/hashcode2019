@@ -94,7 +94,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_1,
                 v_tags_1 = removed_slide.v_tags_1
-            )
+            ))
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_2,
                 v_tags_1 = removed_slide.v_tags_2
