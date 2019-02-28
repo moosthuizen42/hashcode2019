@@ -7,17 +7,17 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
 
     completion_factor = len(current_slides) / max_slides
 
-    option = random.randint(0, 2)
+    option = random.randint(0, 1000)
 
-    if (option == 0):
+    if (option < 450):
         force = random.randint(0,100) > completion_factor*2 + 98
         doRandomInsert(current_slides, unused_slides_H, unused_slides_V, force)
 
-    elif (option == 1):
+    elif (option < 900):
         force = random.randint(0,100) > (100 - completion_factor*2)
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
-    elif (option == 2):
+    else:
         removeLowestScore(current_slides, unused_slides_H, unused_slides_V)
 
 
@@ -41,7 +41,7 @@ def removeLowestScore (current_slides, unused_slides_H, unused_slides_V):
     if (minimum_index > -1):
         removed_slide = current_slides[minimum_index];
 
-        if (removed_slide.h_image is None):
+        if (removed_slide.h_image is not None):
             unused_slides_H.append(removed_slide)
         else:
             unused_slides_V.append(Slide(
@@ -63,7 +63,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
         return
 
     if (len(current_slides) > 3):
-        insert_index = random.randint(0, len(current_slides)-2)
+        insert_index = random.randint(1, len(current_slides)-1)
     else:
         insert_index = 0
 
@@ -189,9 +189,9 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force):
 def insertImprovement (current_slides, insert_index, insert_slide):
     # print("insertImprovement")
 
-    old_score = getScore( current_slides[insert_index], current_slides[insert_index + 1] )
-    new_score = (getScore( current_slides[insert_index], insert_slide ) +
-        getScore( insert_slide, current_slides[insert_index + 1] ) / 2)
+    old_score = getScore( current_slides[insert_index - 1], current_slides[insert_index] )
+    new_score = (getScore( current_slides[insert_index - 1], insert_slide ) +
+        getScore( insert_slide, current_slides[insert_index] ) / 2)
 
     return new_score - old_score
 

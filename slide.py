@@ -1,6 +1,6 @@
 
 class Slide():
-    def __init__(self, v_tags_1=None, v_tags_2=None, h_tags=None, v_image_1=None, v_image_2=None, h_image=None):
+    def __init__(self, v_tags_1=None, v_tags_2=None, h_tags=None, v_image_1=None, v_image_2=None, h_image=None, prev_score=None, next_score=None):
         self.v_image_1 = v_image_1
         self.v_image_2 = v_image_2
         self.h_image = h_image
@@ -15,6 +15,8 @@ class Slide():
         if h_tags is not None:
             self.all_tags.extend(h_tags)
         self.all_tags = list(set(self.all_tags))
+        self.prev_score = prev_score
+        self.next_score = next_score
 
     def __str__(self):
         if self.h_image:
