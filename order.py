@@ -45,6 +45,8 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
         print("random_unused_index_2: " + random_unused_index_2)
         while (random_unused_index_1 == random_unused_index_2):
             random_unused_index_2 = random.randint(0, len(unused_slides_V)-1)
+            print("unused slides length: " + len(unused_slides_V))
+            print("random_unused_index_1: " + random_unused_index_1)
             print("random_unused_index_2: " + random_unused_index_2)
 
 
