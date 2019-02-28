@@ -3,7 +3,7 @@ import random;
 
 def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
 
-    option = random.randint(0, 2);
+    option = random.randint(0, 1);
 
     if (option == 0):
         doRandomInsert(current_slides, unused_slides_H, unused_slides_V);   
@@ -11,8 +11,8 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
     elif (option == 1):
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V);
 
-    elif (option == 2):
-        doRandomSwap(current_slides, unused_slides_V);
+    # elif (option == 2):
+    #     doRandomSwap(current_slides, unused_slides_V);
 
 
 
@@ -82,7 +82,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
             unused_slides_V.append(removed_slide.ids[0]);
             unused_slides_V.append(removed_slide.ids[1]);
         else:
-            unused_slides_H.append(removed_slide.ids[1]);        
+            unused_slides_H.append(removed_slide.ids[0]);        
 
 
         del current_slides[remove_index];
@@ -92,37 +92,37 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
 
 
 
-def doRandomSwap (current_slides, unused_slides_V):
+# def doRandomSwap (current_slides, unused_slides_V):
 
-    if (current_slides.length < 3):
-        print "3 or more slides needed for swap check."
-        return;
+#     if (current_slides.length < 3):
+#         print "3 or more slides needed for swap check."
+#         return;
 
-    if (unsused_slides_V.length < 2):
-        print "2 or more unused slides needed for V swap check."
-        return;
+#     if (unsused_slides_V.length < 2):
+#         print "2 or more unused slides needed for V swap check."
+#         return;
 
-    check_index = randint(1, current_slides.length-2);
+#     check_index = randint(1, current_slides.length-2);
 
-    random_unused_index_1 = random.randint(0, unused_slides_V.length-1);
-    random_unused_index_2 = random.randint(0, unused_slides_V.length-1);
-    while (random_unused_index_1 == random_unused_index_2):
-        random_unused_index_2 = random.randint(0, unused_slides_V.length-1);
+#     random_unused_index_1 = random.randint(0, unused_slides_V.length-1);
+#     random_unused_index_2 = random.randint(0, unused_slides_V.length-1);
+#     while (random_unused_index_1 == random_unused_index_2):
+#         random_unused_index_2 = random.randint(0, unused_slides_V.length-1);
 
-    # Build a new slide temporarily
-    # random_unused_slide = new slide(random_unused_index_1, random_unused_index_2);
+#     # Build a new slide temporarily
+#     # random_unused_slide = new slide(random_unused_index_1, random_unused_index_2);
 
-    if ( verticalSwapImprovement(current_slides, check_index, random_unused_slide) > 0):
+#     if ( verticalSwapImprovement(current_slides, check_index, random_unused_slide) > 0):
 
-        del unused_slides_V[random_unused_index_1];
-        del unused_slides_V[random_unused_index_2];
+#         del unused_slides_V[random_unused_index_1];
+#         del unused_slides_V[random_unused_index_2];
 
-        unused_slides_V.append( current_slides[check_index].ids[0] );
-        unused_slides_V.append( current_slides[check_index].ids[1] );
+#         unused_slides_V.append( current_slides[check_index].ids[0] );
+#         unused_slides_V.append( current_slides[check_index].ids[1] );
 
-        del current_slides[check_index];
+#         del current_slides[check_index];
 
-        current_slides.insert(check_index, random_unused_slide);
+#         current_slides.insert(check_index, random_unused_slide);
 
 
 
@@ -147,15 +147,15 @@ def removeImprovement (current_slides, remove_index):
 
 
 
-def verticalSwapImprovement (current_slides, check_index, swapped_slide):
+# def verticalSwapImprovement (current_slides, check_index, swapped_slide):
     
 
-    new_score = getScore( current_slides[check_index - 1], swapped_slide ) + 
-        getScore( swapped_slide, current_slides[insert_index + 1] );
+#     new_score = getScore( current_slides[check_index - 1], swapped_slide ) + 
+#         getScore( swapped_slide, current_slides[insert_index + 1] );
 
 
-    old_score = getScore( current_slides[check_index - 1], current_slides[check_index] ) + 
-        getScore( current_slides[check_index], current_slides[insert_index + 1] );
+#     old_score = getScore( current_slides[check_index - 1], current_slides[check_index] ) + 
+#         getScore( current_slides[check_index], current_slides[insert_index + 1] );
 
-    return new_score - old_score;
+#     return new_score - old_score;
 
