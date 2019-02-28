@@ -8,7 +8,7 @@ def read_input(filename):
 
     P = int(lines[0])
 
-    # tags = []
+    tags = []
     v = []
     h = []
 
