@@ -22,8 +22,37 @@ class Solver:
         return min(len(s1 & s2), len(s1 - s2), len(s2 - s1))
 
     def solve(self):
-        self.slides.append(3)
-        self.slides.append([1, 2])
+
+        self.slides.append(self.h.pop())
+        H = len(self.h)
+
+        total = 0
+
+        while H > 0:
+
+            for h in range(H):
+                score = self.score(self.slides[-1], self.h[h])
+                total += score
+                if score > 0:
+                    self.slides.append(self.h[h])
+                    del self.h[h]
+                    break
+
+            H = len(self.h)
+            print((H, total))
+
+            # V = len(self.v)
+
+            # while H + V > 0:
+
+            #     if H > 0:
+            #         self.slides.append(self.h.pop())
+
+            #     if V > 0:
+            #         self.slides.append([self.v.pop(), self.v.pop()])
+
+            #     H = len(self.h)
+            #     V = len(self.v)
 
     def validate(self):
         pass
@@ -77,7 +106,12 @@ class Solver:
                     f.write("%d %d\n" % (slide[0], slide[1]))
 
 
-solver = Solver("inputs/a_example.txt")
+# solver = Solver("inputs/a_example.txt")
+solver = Solver("inputs/b_lovely_landscapes.txt")
+# solver = Solver("inputs/c_memorable_moments.txt")
+# solver = Solver("inputs/d_pet_pictures.txt")
+# solver = Solver("inputs/e_shiny_selfies.txt")
+
 solver.solve()
 print(solver.total_score())
 solver.output()
