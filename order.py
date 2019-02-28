@@ -52,8 +52,13 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
 
         if ( insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
-            del unused_slides_V[random_unused_index_1]
-            del unused_slides_V[random_unused_index_2]
+            if (random_unused_index_1 > random_unused_index_2):
+                del unused_slides_V[random_unused_index_1]
+                del unused_slides_V[random_unused_index_2]
+            else:
+                del unused_slides_V[random_unused_index_2]
+                del unused_slides_V[random_unused_index_1]
+
 
 
     if (h_case):
@@ -89,7 +94,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_1,
                 v_tags_1 = removed_slide.v_tags_1,
-            ))
+            )
             unused_slides_V.append(Slide(
                 v_image_1 = removed_slide.v_image_2,
                 v_tags_1 = removed_slide.v_tags_2,
