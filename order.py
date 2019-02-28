@@ -7,7 +7,7 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
 
     completion_factor = len(current_slides) / max_slides
 
-    option = random.randint(0, 1)
+    option = random.randint(0, 2)
 
     if (option == 0):
         force = random.randint(0,100) > completion_factor*2 + 98
@@ -17,9 +17,42 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
         force = random.randint(0,100) > (100 - completion_factor*2)
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
+    elif (option == 2):
+        removeLowestScore(current_slides, unused_slides_H, unused_slides_V)
+
 
     # elif (option == 2):
     #     doRandomSwap(current_slides, unused_slides_V);
+
+
+def removeLowestScore (current_slides):
+
+    minimum_score = 1000000;
+    minimum_index = -1;
+    
+    for i in range(len(current_slides)-3):
+        current_score = ( getScore(current_slides[i], current_slides[i+1]) +
+            getScore(current_slides[i+1], current_slides[i+2]) );
+        if ( current_score < minimum_score ):
+            minimum_score = current_score
+            minimum_index = i + 1
+
+
+    if (minimum_index > -1):
+        removed_slide = current_slides[minimum_index];
+
+        if (remove_me.h_image is None):
+            unused_slides_H.append(removed_slide)
+        else:
+            unused_slides_V.append(Slide(
+                v_image_1 = removed_slide.v_image_1,
+                v_tags_1 = removed_slide.v_tags_1,
+            ))
+            unused_slides_V.append(Slide(
+                v_image_1 = removed_slide.v_image_2,
+                v_tags_1 = removed_slide.v_tags_2
+            ))
+
 
 
 def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
