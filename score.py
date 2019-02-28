@@ -11,3 +11,5 @@ def scoreArray(slides):
     for i, s in enumerate(slides):
         if i + 1 < slides_count:
             score += getScore(s, slides[i + 1])
+
+    return score
