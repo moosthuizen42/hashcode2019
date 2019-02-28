@@ -40,9 +40,12 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
 
         # V-case
         random_unused_index_1 = random.randint(0, len(unused_slides_V)-1)
+        print("random_unused_index_1: " + random_unused_index_1)
         random_unused_index_2 = random.randint(0, len(unused_slides_V)-1)
+        print("random_unused_index_2: " + random_unused_index_2)
         while (random_unused_index_1 == random_unused_index_2):
             random_unused_index_2 = random.randint(0, len(unused_slides_V)-1)
+            print("random_unused_index_2: " + random_unused_index_2)
 
 
         # Build a new slide temporarily
