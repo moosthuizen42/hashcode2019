@@ -26,7 +26,8 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
         # print("2 or more current slides needed for insert check.")
         return
 
-    insert_index = random.randint(0, len(current_slides)-2)
+    if (not force):
+        insert_index = random.randint(0, len(current_slides)-2)
 
 
     # Randomly check a V-insert or H-insert
