@@ -37,7 +37,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
 
     # Randomly check a V-insert or H-insert
-    v_case = random.randint(0,100) > 50
+    v_case = random.randint(0,100) > 50 * ( len(unused_slides_H) / len(unused_slides_V) )
     h_case = not v_case
 
     if (v_case):
