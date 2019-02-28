@@ -7,8 +7,9 @@ def read_input(filename):
 
     P = int(lines[0])
 
-    v = {}
-    h = {}
+    # tags = []
+    v = []
+    h = []
 
     for i, row in enumerate(lines[1:]):
         elements = row.strip().split(' ')
@@ -16,11 +17,11 @@ def read_input(filename):
         T = elements[2:]
 
         if O == 'H':
-            h[i] = T
+            h.append({"id": i, "tags": T})
         else:
-            v[i] = T
+            v.append({"id": i, "tags": T})
 
     return P, v, h
 
 
-P, v, h = read_input("inputs/a_example.txt")
+# P, v, h = read_input("inputs/a_example.txt")
