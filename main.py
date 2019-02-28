@@ -1,4 +1,4 @@
-from score import score
+from score import getScore
 
 def main():
     node_a = {
@@ -8,7 +8,7 @@ def main():
         "tags": ['test', 'pizza', 'home', 'beer']
     }
 
-    print(score(node_a, node_b))
+    print(getScore(node_a, node_b))
 
 if __name__ == '__main__':
     main()
