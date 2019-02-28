@@ -31,8 +31,7 @@ def removeLowestScore (current_slides, unused_slides_H, unused_slides_V):
     minimum_index = -1;
     
     for i in range(len(current_slides)-3):
-        current_score = ( getScore(current_slides[i], current_slides[i+1]) +
-            getScore(current_slides[i+1], current_slides[i+2]) );
+        current_score = current_slides[i+1].prev_score + current_slides[i+1].next_score
         if ( current_score < minimum_score ):
             minimum_score = current_score
             minimum_index = i + 1
@@ -96,6 +95,20 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
         if ( force or insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
+
+            if(insert_index > 0):
+                current_slides[insert_index].prev_score = getScore( current_slides[insert_index - 1],
+                    current_slides[insert_index]);
+            else:
+                current_slides[insert_index].prev_score = 0;
+
+            if(insert_index < len(current_slides) - 2):
+                current_slides[insert_index].next_score = getScore( current_slides[insert_index],
+                    current_slides[insert_index + 1]);
+            else:
+                current_slides[insert_index].next_score = 0;
+                
+
             if (random_unused_index_1 > random_unused_index_2):
                 del unused_slides_V[random_unused_index_1]
                 del unused_slides_V[random_unused_index_2]
@@ -116,6 +129,19 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
         if ( force or insertImprovement(current_slides, insert_index, random_unused_slide) > 0 ):
             current_slides.insert(insert_index, random_unused_slide)
+
+            if(insert_index > 0):
+                current_slides[insert_index].prev_score = getScore( current_slides[insert_index - 1],
+                    current_slides[insert_index]);
+            else:
+                current_slides[insert_index].prev_score = 0;
+
+            if(insert_index < len(current_slides) - 2):
+                current_slides[insert_index].next_score = getScore( current_slides[insert_index],
+                    current_slides[insert_index + 1]);
+            else:
+                current_slides[insert_index].next_score = 0;
+
             del unused_slides_H[random_unused_index]
 
 
