@@ -215,7 +215,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force):
 def insertImprovement (current_slides, insert_index, insert_slide):
     # print("insertImprovement")
 
-    old_score = current_slides[insert_index].next_score
+    old_score = current_slides[insert_index - 1].next_score
     new_score = (getScore( current_slides[insert_index - 1], insert_slide ) +
         getScore( insert_slide, current_slides[insert_index] ) / 2)
 
