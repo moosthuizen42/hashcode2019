@@ -28,6 +28,9 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
 
     if (not force):
         insert_index = random.randint(0, len(current_slides)-2)
+    else:
+        if (len(current_slides) < 2):
+            qinsert_index = 0
 
 
     # Randomly check a V-insert or H-insert
