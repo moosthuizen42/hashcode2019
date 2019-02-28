@@ -1,8 +1,8 @@
-from score import getScore
+from score import getScore, scoreArray
 from input import read_input
 from slide import Slide
 from random import randint
-# from order import repeatRandomness
+from order import repeatRandomness
 from tqdm import tqdm
 import itertools
 
@@ -32,8 +32,9 @@ def main():
     print(len(slideshow))
     print(slideshow)
 
-    # for _ in tqdm(P * 5):
-    #     repeatRandomness(slideshow, h, v)
+    for _ in tqdm(range(P *5)):
+        repeatRandomness(slideshow, h, v)
+        print(scoreArray(slideshow))
 
 if __name__ == '__main__':
     main()
