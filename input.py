@@ -25,4 +25,15 @@ def read_input(filename):
     return P, v, h
 
 
+def write_output(filename, slides):
+
+    with open(filename, "w") as f:
+        f.write("%d" % len(self.slides))
+        # for slide in self.slides:
+        #     if len(slide) > 0:
+        #         f.write("%d", slide)
+        #     else:
+        #         f.write("%d %d", (slide[0], slide[1]))
+
+
 # P, v, h = read_input("inputs/a_example.txt")

@@ -1,16 +1,20 @@
-from input import read_input
-
-
 class Solver:
 
     def __init__(self, filename):
         self.in_file = filename
         self.out_file = "outputs/" + filename.split('/')[1]
 
-        self.photos = []
         self.slides = []
 
-        self.input()
+        self.photos, self.h, self.v = self.input()
+
+    def score(self, photo1, photo2):
+        s1 = self.photos[photo1][1]
+        s2 = self.photos[photo2][1]
+        return min(len(s1 & s2), len(s1 - s2), len(s2 - s1))
+
+    def solve(self):
+        print(self.score(0, 3))
 
     def input(self):
 
@@ -18,8 +22,9 @@ class Solver:
             P = int(f.readline())
             tags = {}
             tag_id = 0
-            v = {}
-            h = {}
+            photos = []
+            h = []
+            v = []
             for i, line in enumerate(f):
                 items = line.strip().split(' ')
                 O = items[0]
@@ -30,24 +35,15 @@ class Solver:
                         tags[tag] = tag_id
                         tag_id += 1
                     tag_ids.append(tags[tag])
-                if O == 'h':
-                    h[i] = tag_ids
+
+                horizontal = O == 'H'
+                photos.append((horizontal, set(tag_ids)))
+                if horizontal:
+                    h.append(i)
                 else:
-                    v[i] = tag_ids
+                    v.append(i)
 
-        return None
-
-        # lines = open(filename).readlines()
-
-        # for i, row in enumerate(lines[1:]):
-        # elements = row.strip().split(' ')
-        # O = elements[0]
-        # T = elements[2:]
-
-        # if O == 'H':
-        #     h.append({"id": i, "orientation": O, "tags": T})
-        # else:
-        #     v.append({"id": i, "orientation": O, "tags": T})
+        return (photos, h, v)
 
     def output(self):
         with open(self.out_file, "w") as f:
@@ -59,6 +55,6 @@ class Solver:
                     f.write("%d %d", (slide[0], slide[1]))
 
 
-solve = Solver("inputs/a_example.txt")
-
-solve.output()
+solver = Solver("inputs/a_example.txt")
+solver.solve()
+solver.output()
