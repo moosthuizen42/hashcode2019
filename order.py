@@ -7,17 +7,17 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
 
     completion_factor = len(current_slides) / max_slides
 
-    option = random.randint(0, 2)
+    option = random.randint(0, 1000)
 
-    if (option == 0):
+    if (option < 450):
         force = random.randint(0,100) > completion_factor*2 + 98
         doRandomInsert(current_slides, unused_slides_H, unused_slides_V, force)
 
-    elif (option == 1):
+    elif (option < 900):
         force = random.randint(0,100) > (100 - completion_factor*2)
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
-    elif (option == 2):
+    else:
         removeLowestScore(current_slides, unused_slides_H, unused_slides_V)
 
 
