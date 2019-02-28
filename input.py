@@ -7,7 +7,7 @@ def read_input(filename):
 
     P = int(lines[0])
 
-    # tags = []
+    tags = []
     v = []
     h = []
 
@@ -17,9 +17,9 @@ def read_input(filename):
         T = elements[2:]
 
         if O == 'H':
-            h.append({"id": i, "tags": T})
+            h.append({"id": i, "orientation": O, "tags": T})
         else:
-            v.append({"id": i, "tags": T})
+            v.append({"id": i, "orientation": O, "tags": T})
 
     return P, v, h
 
