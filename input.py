@@ -7,22 +7,20 @@ def read_input(filename):
 
     P = int(lines[0])
 
-    tags = {}
+    v = {}
+    h = {}
 
-    verticals = []
-    horizontals = []
-
-    for row in lines[1:]:
+    for i, row in enumerate(lines[1:]):
         elements = row.strip().split(' ')
         O = elements[0]
         T = elements[2:]
 
         if O == 'H':
-            horizontals.append(T)
+            h[i] = T
         else:
-            verticals.append(T)
+            v[i] = T
 
-    return P, verticals, horizontals
+    return P, v, h
 
 
 P, v, h = read_input("inputs/a_example.txt")
