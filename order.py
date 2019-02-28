@@ -62,7 +62,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
         return
 
     if (len(current_slides) > 3):
-        insert_index = random.randint(0, len(current_slides)-2)
+        insert_index = random.randint(1, len(current_slides)-1)
     else:
         insert_index = 0
 
@@ -215,9 +215,9 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force):
 def insertImprovement (current_slides, insert_index, insert_slide):
     # print("insertImprovement")
 
-    old_score = getScore( current_slides[insert_index], current_slides[insert_index + 1] )
-    new_score = (getScore( current_slides[insert_index], insert_slide ) +
-        getScore( insert_slide, current_slides[insert_index + 1] ) / 2)
+    old_score = getScore( current_slides[insert_index - 1], current_slides[insert_index] )
+    new_score = (getScore( current_slides[insert_index - 1], insert_slide ) +
+        getScore( insert_slide, current_slides[insert_index] ) / 2)
 
     return new_score - old_score
 
