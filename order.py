@@ -41,7 +41,7 @@ def removeLowestScore (current_slides, unused_slides_H, unused_slides_V):
     if (minimum_index > -1):
         removed_slide = current_slides[minimum_index];
 
-        if (removed_slide.h_image is None):
+        if (removed_slide.h_image is not None):
             unused_slides_H.append(removed_slide)
         else:
             unused_slides_V.append(Slide(
