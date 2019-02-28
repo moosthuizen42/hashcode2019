@@ -3,6 +3,7 @@ from score import getScore
 from slide import Slide
 
 def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
+    print("repeatRandomness")
 
     option = random.randint(0, 1)
 
@@ -18,6 +19,7 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
 
 
 def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
+    print("doRandomInsert")
 
     if (len(current_slides) < 2):
         print("2 or more current slides needed for insert check.")
@@ -78,6 +80,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
 
 
 def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
+    print("doRandomRemove")
 
     if (len(current_slides) < 3):
         print("3 or more slides needed for remove.")
@@ -143,6 +146,7 @@ def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
 
 
 def insertImprovement (current_slides, insert_index, insert_slide):
+    print("insertImprovement")
 
     old_score = getScore( current_slides[insert_index], current_slides[insert_index + 1] )
     new_score = (getScore( current_slides[insert_index], insert_slide ) +
@@ -153,6 +157,7 @@ def insertImprovement (current_slides, insert_index, insert_slide):
 
 
 def removeImprovement (current_slides, remove_index):
+    print("removeImprovement")
 
     old_score = (getScore( current_slides[remove_index - 1], current_slides[remove_index] ) +
         getScore( current_slides[remove_index], current_slides[remove_index + 1] ) / 2)
