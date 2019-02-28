@@ -14,14 +14,12 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V):
     elif (option == 1):
         doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force)
 
-    else:
-
 
     # elif (option == 2):
     #     doRandomSwap(current_slides, unused_slides_V);
 
 
-def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
+def doRandomInsert (current_slides, unused_slides_H, unused_slides_V, force):
     # print("doRandomInsert")
 
     if (len(current_slides) < 2):
@@ -79,7 +77,7 @@ def doRandomInsert (current_slides, unused_slides_H, unused_slides_V):
 
 
 
-def doRandomRemove(current_slides, unused_slides_H, unused_slides_V):
+def doRandomRemove(current_slides, unused_slides_H, unused_slides_V, force):
     # print("doRandomRemove")
 
     if (len(current_slides) < 3):
