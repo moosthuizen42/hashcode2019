@@ -25,7 +25,7 @@ def repeatRandomness (current_slides, unused_slides_H, unused_slides_V, max_slid
     #     doRandomSwap(current_slides, unused_slides_V);
 
 
-def removeLowestScore (current_slides):
+def removeLowestScore (current_slides, unused_slides_H, unused_slides_V):
 
     minimum_score = 1000000;
     minimum_index = -1;
